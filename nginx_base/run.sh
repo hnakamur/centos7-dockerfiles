@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run -i --volumes-from data -t hnakamur/nginx
+docker run -d --volumes-from data --name nginx -p 80:80 -t hnakamur/nginx_base
