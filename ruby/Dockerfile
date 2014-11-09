@@ -3,11 +3,11 @@ MAINTAINER Hiroaki Nakamura <hnakamur@gmail.com>
 
 ENV RUBY_RPM_VERSION 2.1.4-2
 
-ADD ruby-${RUBY_RPM_VERSION}.el7.centos.x86_64.rpm /tmp/ruby-${RUBY_RPM_VERSION}.el7.centos.x86_64.rpm
+ADD private.repo /etc/yum.repos.d/private.repo
+ADD gemrc /root/.gemrc
 
-RUN yum install -y libyaml && \
+RUN yum install -y ruby && \
     yum clean all && \
-    rpm -i /tmp/ruby-${RUBY_RPM_VERSION}.el7.centos.x86_64.rpm && \
-    rm /tmp/ruby-${RUBY_RPM_VERSION}.el7.centos.x86_64.rpm
+    gem install bundler
 
 CMD ["/bin/bash"]
