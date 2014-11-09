@@ -6,8 +6,7 @@ ADD nginx.repo /etc/yum.repos.d/nginx.repo
 RUN rpm --import http://nginx.org/keys/nginx_signing.key && \
     yum install -y nginx
 
-ADD nginx.conf /etc/nginx/nginx.conf
+ONBUILD ADD conf/ /etc/nginx/
 
-VOLUME ["/data"]
 EXPOSE 80
 CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
